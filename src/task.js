@@ -38,7 +38,7 @@ class Task{
         task.appendChild(taskDate);
 
         const taskDescription = document.createElement('p');
-        taskDescription.textContent = `Description ${this.description}`;
+        taskDescription.textContent = `Description: ${this.description}`;
         task.appendChild(taskDescription);
 
         task.classList.add('task');

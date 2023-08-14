@@ -9,7 +9,7 @@ h1, h2, h3{
     height: 100vh;
 }
 
-.projects{
+.ProjectContainer{
     border-right: 1px solid black;
 }
 
@@ -28,4 +28,9 @@ h1, h2, h3{
     justify-content: flex-start;
     align-items: flex-start;
     overflow: hidden;
+}
+
+.addProject{
+    display: flex;
+    flex-direction: column;
 }

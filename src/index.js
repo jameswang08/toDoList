@@ -1,10 +1,10 @@
 import './style.css';
 import Task from './task.js'
 import Project from './project.js'
+import Dash from './dashboard.js'
 
+//New Task
 const form = document.querySelector('.add');
-
-let myProj = new Project("test");
 
 form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -15,22 +15,34 @@ form.addEventListener('submit', (event) => {
     const description = document.getElementById('description').value;
 
     let myTask = new Task(taskName, priority, date, description);
-    myProj.addTask(myTask);
+    dashboard.getCurrentProjectInView().addTask(myTask);
     form.reset();
-    myProj.displayTasks();
+    dashboard.getCurrentProjectInView().displayTasks();
 });
 
-let someTask = new Task("wash deeshes", "low", "today", "hehehaha");
+//New Project
+const newProject = document.querySelector('.addProject');
 
+newProject.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const newProjectName = document.getElementById('projName').value;
+  dashboard.addProject(new Project(newProjectName));
+
+  dashboard.displayProjects();
+
+  newProject.reset();
+});
+
+let someTask = new Task("Example Project", "low", "today", "Lorem Ipsum");
+let myProj = new Project("Example Project");
 myProj.addTask(someTask);
-myProj.displayTasks();
+
+let dashboard = new Dash(myProj);
+dashboard.displayProjects();
 
 /*
 Functionality I still need to implement:
--expand/edit task
-  Edit button that makes task focused and blurs out rest
--add projects
-  simple event listener w/ an add button
 -switch project in view
   -simple event listener tab system where i clear out container contents and add new stuff
 -store data locally
