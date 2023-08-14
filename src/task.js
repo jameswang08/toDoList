@@ -4,6 +4,20 @@ class Task{
         this.priority = prio;
         this.date = date;
         this.description = disc;
+        this.edit = false;
+    }
+    isEditing(){
+        if(this.edit) return true;
+        return false;
+    }
+    toggleEdit(){
+        this.edit = !this.edit;
+    }
+    update(nm, prio, date, disc){
+        this.name = nm;
+        this.priority = prio;
+        this.date = date;
+        this.description = disc;
     }
     display(){
         const task= document.createElement('div');
