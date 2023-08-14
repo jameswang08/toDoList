@@ -31,11 +31,19 @@ class Project{
     }
     displayTasks(){
         const newProj = document.querySelector('.tasks');
+
+        const taskElements = newProj.querySelectorAll('.task');
+        taskElements.forEach(taskElement => {
+            newProj.removeChild(taskElement);
+        });
+
         this.taskList.forEach( item => {
             let aTask = item.display()
             let buttons = this.addButtons(aTask, item);
             aTask.insertBefore(buttons, aTask.firstChild);
-            newProj.appendChild(aTask);
+            newProj.insertBefore(aTask, newProj.firstChild);
+            console.log("bruh?");
+            console.log(this.taskList);
         });
     }
 }

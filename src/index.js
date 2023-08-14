@@ -2,10 +2,27 @@ import './style.css';
 import Task from './task.js'
 import Project from './project.js'
 
-let myProj = new Project("test");
-let myTask = new Task("wash deeshes", "low", "today", "hehehaha");
+const form = document.querySelector('.add');
 
-myProj.addTask(myTask);
+let myProj = new Project("test");
+
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const taskName = document.getElementById('name').value;
+    const priority = document.getElementById('priority').value;
+    const date = document.getElementById('date').value;
+    const description = document.getElementById('description').value;
+
+    let myTask = new Task(taskName, priority, date, description);
+    myProj.addTask(myTask);
+    form.reset();
+    myProj.displayTasks();
+});
+
+let someTask = new Task("wash deeshes", "low", "today", "hehehaha");
+
+myProj.addTask(someTask);
 myProj.displayTasks();
 
 /*

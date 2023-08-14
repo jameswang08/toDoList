@@ -20,7 +20,8 @@ h1, h2, h3{
     grid-auto-rows: 300px;
 }
 
-.task{
+.task,
+.add{
     border: 2px solid black;
     display: flex;
     flex-direction: column;

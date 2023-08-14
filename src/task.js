@@ -16,15 +16,15 @@ class Task{
         task.appendChild(taskName);
 
         const taskPriority = document.createElement('h3');
-        taskPriority.textContent = this.priority;
+        taskPriority.textContent = `Priority: ${this.priority}`;
         task.appendChild(taskPriority);
 
         const taskDate = document.createElement('h3');
-        taskDate.textContent = this.date;
+        taskDate.textContent = `Date: ${this.date}`;
         task.appendChild(taskDate);
 
         const taskDescription = document.createElement('p');
-        taskDescription.textContent = this.description;
+        taskDescription.textContent = `Description ${this.description}`;
         task.appendChild(taskDescription);
 
         task.classList.add('task');
