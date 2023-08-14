@@ -8,6 +8,9 @@ class Task{
     display(){
         const task= document.createElement('div');
 
+        const edit = document.createElement('ion-icon');
+        edit.setAttribute('name', 'pencil');
+
         const taskName = document.createElement('h2');
         taskName.textContent = this.name;
         task.appendChild(taskName);
