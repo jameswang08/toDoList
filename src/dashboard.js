@@ -19,8 +19,17 @@ class Dashboard{
         this.projList.forEach((item) => {
             const newProj = document.createElement('li');
             newProj.innerText = item.name;
+
+            newProj.addEventListener('click', () => {
+                this.projInView = item;
+                console.log(this.projInView);
+                item.displayTasks();
+            });
+
             projectContainer.appendChild(newProj);
         });
+
+
     }
 }
 
