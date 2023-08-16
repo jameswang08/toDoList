@@ -3,6 +3,7 @@ class Dashboard{
         this.projList = [aProject];
         this.projInView = aProject;
         aProject.displayTasks();
+        
         window.localStorage.setItem(`${aProject.name}`, JSON.stringify(aProject));
     }
     getCurrentProjectInView(){
@@ -10,6 +11,7 @@ class Dashboard{
     }
     addProject(obj){
         this.projList.push(obj);
+
         window.localStorage.setItem(`${obj.name}`, JSON.stringify(obj));
     }
     displayProjects(){

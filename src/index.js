@@ -35,7 +35,7 @@ newProject.addEventListener('submit', (event) => {
 });
 
 let someTask = new Task("Example Project", "low", "today", "Lorem Ipsum");
-let myProj = new Project("Example Project");-
+let myProj = new Project("Example Project");
 myProj.addTask(someTask);
 
 let dashboard = new Dash(myProj);

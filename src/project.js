@@ -13,6 +13,9 @@ class Project{
         this.taskList[index].update(taskName, priority, date, description);
 
         item.toggleEdit();
+
+        //Update task in local storage
+        window.localStorage.setItem(`Project: ${this.name}, Task: ${item.name}`, JSON.stringify(item));
     }
     createEditForm(taskElement, task, index){
         // Create form element
@@ -101,8 +104,11 @@ class Project{
         del.addEventListener('click', () => {
             task.remove()
             const index = this.taskList.indexOf(taskElement);
+            console.log("apples");
             if(index !== -1) {
+                console.log("tseet");
                 this.taskList.splice(index, 1);
+                window.localStorage.removeItem(`Project: ${this.name}, Task: ${taskElement.name}`);
             }
             //Refresh task page
             this.displayTasks();
