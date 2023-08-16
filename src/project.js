@@ -10,7 +10,6 @@ class Project{
         const priority = document.getElementById('priority').value;
         const date = document.getElementById('date').value;
         const description = document.getElementById('description').value;
-        console.log(this.taskList[index]);
         this.taskList[index].update(taskName, priority, date, description);
 
         item.toggleEdit();
@@ -133,6 +132,7 @@ class Project{
     }
     addTask(taskObj){
         this.taskList.push(taskObj);
+        window.localStorage.setItem(`Project: ${this.name}, Task: ${taskObj.name}`, JSON.stringify(taskObj));
     }
     displayTasks(){
         const newProj = document.querySelector('.tasks');

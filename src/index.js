@@ -35,7 +35,7 @@ newProject.addEventListener('submit', (event) => {
 });
 
 let someTask = new Task("Example Project", "low", "today", "Lorem Ipsum");
-let myProj = new Project("Example Project");
+let myProj = new Project("Example Project");-
 myProj.addTask(someTask);
 
 let dashboard = new Dash(myProj);
@@ -43,7 +43,5 @@ dashboard.displayProjects();
 
 /*
 Functionality I still need to implement:
--switch project in view
-  -simple event listener tab system where i clear out container contents and add new stuff
 -store data locally
 */
