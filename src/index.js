@@ -16,7 +16,7 @@ function customSort(a, b) {
   else return 0;
 }
 
-//New Task
+//Event listener for adding new tasks
 const form = document.querySelector('.add');
 
 form.addEventListener('submit', (event) => {
@@ -33,7 +33,7 @@ form.addEventListener('submit', (event) => {
     dashboard.getCurrentProjectInView().displayTasks();
 });
 
-//New Project
+//Event listener for adding new projects
 const newProject = document.querySelector('.addProject');
 
 newProject.addEventListener('submit', (event) => {
@@ -49,7 +49,7 @@ newProject.addEventListener('submit', (event) => {
 
 //CODE THAT IS RUN WHEN USER ACCESSES SITE
 
-//If user has visited site already before, load previous projects and tasks
+//If the user hasn't visited the site yet, create an exampele project and task
 if(window.localStorage.length==0){
   let myProj = new Project("Example Project");
   let someTask = new Task("Example Task", "low", "today", "Lorem Ipsum");
@@ -58,7 +58,7 @@ if(window.localStorage.length==0){
   //Var so that dashboard persists outside of this loop
   var dashboard = new Dash(myProj);
 }
-//Otherwise create an exampele project and task
+//Otherwise, load previous projects and tasks
 else{
   //Sort local data so that projects always come before tasks
   const keys = Object.keys(localStorage);

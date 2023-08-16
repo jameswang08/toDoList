@@ -3,6 +3,26 @@ class Project{
         this.name=projName;
         this.taskList = [];
     }
+    addTask(taskObj){
+        this.taskList.push(taskObj);
+        window.localStorage.setItem(`Project: ${this.name} Task: ${taskObj.name}`, JSON.stringify(taskObj));
+    }
+    displayTasks(){
+        const newProj = document.querySelector('.tasks');
+
+        const taskElements = newProj.querySelectorAll('.task');
+        taskElements.forEach(taskElement => {
+            newProj.removeChild(taskElement);
+        });
+
+        this.taskList.forEach( item => {
+            let aTask = item.display()
+            let buttons = this.addButtons(aTask, item);
+            aTask.insertBefore(buttons, aTask.firstChild);
+            newProj.insertBefore(aTask, newProj.firstChild);
+        });
+    }
+    //Event listener for submit button when editing a task
     editSubmit(item, event, index){
         event.preventDefault();
 
@@ -17,7 +37,8 @@ class Project{
         //Update task in local storage
         window.localStorage.setItem(`Project: ${this.name} Task: ${item.name}`, JSON.stringify(item));
     }
-    createEditForm(taskElement, task, index){
+    //Function to replace a task with a form so that it can be edited
+    createEditForm(task, taskElement, index){
         // Create form element
         let form = document.createElement("form");
         form.className = "edit";
@@ -53,20 +74,20 @@ class Project{
                 input = createFormElement("select", { name: item.input, id: item.input });
                 item.options.forEach(function(option) {
                     let optionElement = createFormElement("option", { value: option.toLowerCase(), textContent: option });
-                    if (taskElement[item.input] === option) {
+                    if (task[item.input] === option) {
                         optionElement.selected = true;
                     }
                     input.appendChild(optionElement);
                 });
             } else if (item.type === "textarea") {
                 input = createFormElement("textarea", { id: item.input, name: item.input, required: item.required });
-                input.textContent = taskElement[item.input];
+                input.textContent = task[item.input];
             } else {
                 input = createFormElement("input", {
                     type: item.type,
                     id: item.input,
                     name: item.input,
-                    value: taskElement[item.input],
+                    value: task[item.input],
                 });
             }
             form.appendChild(input);
@@ -78,16 +99,17 @@ class Project{
         form.appendChild(submitInput);
 
         form.addEventListener('submit', (event) => {
-            this.editSubmit(taskElement, event, index);
+            this.editSubmit(task, event, index);
             //Clear form
-            while(task.firstChild) task.removeChild(task.firstChild);
+            while(taskElement.firstChild) taskElement.removeChild(taskElement.firstChild);
 
             this.displayTasks();
         });
 
         // Append the form to the document body
-        task.appendChild(form);
+        taskElement.appendChild(form);
     }
+    //Adds delete and edit buttons to each task. Done in project so that the buttons have access to taskList
     addButtons(task, taskElement){
         const cont = document.createElement('div');
 
@@ -102,6 +124,7 @@ class Project{
         del.style.width ='30px';
         del.style.height='auto';
         del.addEventListener('click', () => {
+            //Removes deleted task from DOM, the Project, and Local Storage
             task.remove()
             const index = this.taskList.indexOf(taskElement);
             if(index !== -1) {
@@ -133,25 +156,6 @@ class Project{
         cont.appendChild(del);
         cont.appendChild(edit);
         return cont;
-    }
-    addTask(taskObj){
-        this.taskList.push(taskObj);
-        window.localStorage.setItem(`Project: ${this.name} Task: ${taskObj.name}`, JSON.stringify(taskObj));
-    }
-    displayTasks(){
-        const newProj = document.querySelector('.tasks');
-
-        const taskElements = newProj.querySelectorAll('.task');
-        taskElements.forEach(taskElement => {
-            newProj.removeChild(taskElement);
-        });
-
-        this.taskList.forEach( item => {
-            let aTask = item.display()
-            let buttons = this.addButtons(aTask, item);
-            aTask.insertBefore(buttons, aTask.firstChild);
-            newProj.insertBefore(aTask, newProj.firstChild);
-        });
     }
 }
 

@@ -4,7 +4,7 @@ class Task{
         this.priority = prio;
         this.date = date;
         this.description = disc;
-        this.edit = false;
+        this.edit = false; //Flag for whether task should display as a div or a form
     }
     isEditing(){
         if(this.edit) return true;

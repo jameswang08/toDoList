@@ -18,6 +18,7 @@ class Dashboard{
         const cont = document.querySelector('.projects');
         while(cont.firstChild) cont.removeChild(cont.firstChild);
 
+        //Display each project contained in dashboard
         const projectContainer = document.querySelector('.projects');
         this.projList.forEach((item) => {
             const newProj = document.createElement('li');
